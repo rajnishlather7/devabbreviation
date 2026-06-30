@@ -2,7 +2,7 @@
 
 A Static, fast, searchable reference of software engineering abbreviations.
 
-**[Live demo →](#)** *(update this link once deployed — see below)*
+**[Live demo →](https://rajnishlather7.github.io/devabbreviation/)**
 
 
 ## To run locally
