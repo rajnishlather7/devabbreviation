@@ -70,7 +70,7 @@
 
   function matches(item, q) {
     if (!q) return true;
-    const haystack = (item.a + " " + item.f + " " + item.d).toLowerCase();
+    const haystack = (item.a + " " + item.f + " " + item.d + " " + (item.s || "")).toLowerCase();
     return haystack.includes(q);
   }
 
@@ -99,7 +99,7 @@
         <article class="card" data-cat="${item.c}">
           <div class="card-top">
             <span class="card-abbr">${highlight(item.a, q)}</span>
-            <span class="card-tag">${catLabel[item.c] || item.c}</span>
+            <span class="card-tag">${catLabel[item.c] || item.c}${item.s ? ` <span class="card-subtype">/ ${escapeHtml(item.s)}</span>` : ""}</span>
           </div>
           <div class="card-full">${highlight(item.f, q)}</div>
           <p class="card-def">${highlight(item.d, q)}</p>
@@ -124,6 +124,14 @@
     }
   });
 
+  function setTermCountEyebrow() {
+    const eyebrow = document.getElementById("term-count-eyebrow");
+    if (!eyebrow) return;
+    const catCount = CATEGORIES.length - 1; // exclude "All"
+    eyebrow.textContent = `${ABBREVIATIONS.length} terms · ${catCount} categories · zero fluff`;
+  }
+
   buildFilterRow();
+  setTermCountEyebrow();
   render();
 })();
